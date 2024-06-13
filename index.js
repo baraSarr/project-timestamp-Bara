@@ -29,10 +29,10 @@ app.get("/api/:date_string", function (req, res) {
   pattern = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
   if(!pattern.test(date_string)) {
     date_int = parseInt(date_string);
-    date = new Date(date_int);
   } else {
-    date = Date.parse(date_string);
+    date_int = Date.parse(date_string);
   }
+  date = new Date(date_int);
   if(date.toString() === "Invalid Date" || date == NaN)
     res.json({error:"Invalid Date"});
   else {
