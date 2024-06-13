@@ -27,10 +27,13 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/:date_string", function (req, res) {
   date_string = req.params.date_string;
   pattern = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
-  if(!pattern.test(date_string))
-    date_string = parseInt(date_string);
-  date = new Date(date_string);
-  if(date.toString() === "Invalid Date")
+  if(!pattern.test(date_string)) {
+    date_int = parseInt(date_string);
+    date = new Date(date_int);
+  } else {
+    date = Date.parse(date_string);
+  }
+  if(date.toString() === "Invalid Date" || date == NaN)
     res.json({error:"Invalid Date"});
   else {
     let unixTimestamp = date.getTime();
