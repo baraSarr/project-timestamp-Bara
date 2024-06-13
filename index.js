@@ -26,8 +26,8 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/:date_string", function (req, res) {
   date_string = req.params.date_string;
-  pattern = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
-  if(!pattern.test(date_string)) {
+  pattern = /\d{5,}/;
+  if(pattern.test(date_string)) {
     date_int = parseInt(date_string);
   } else {
     date_int = Date.parse(date_string);
