@@ -24,8 +24,8 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/:date", function (req, res) {
-  valueReceived = req.params.date;
+app.get("/api/:date_string", function (req, res) {
+  valueReceived = req.params.date_string;
   pattern = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
   if(!pattern.test(valueReceived))
     valueReceived = parseInt(valueReceived);
